@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heena Nautiyal — Senior Android Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --surface-2: #f4f3f0;
+    --line: #e2e0da;
+    --line-strong: #cfccc3;
+    --text: #1c1d22;
+    --text-muted: #55575f;
+    --text-dim: #9a988f;
+    --indigo: #35399b;
+    --indigo-deep: #23265f;
+    --bronze: #93591f;
+    --forest: #2f6b45;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Source Serif 4', serif;
+    --sans: 'Inter', sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: #cfd0f2; color: var(--indigo-deep); }
+  a{ color: inherit; text-decoration: none; }
+  .wrap{ max-width: 960px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251,250,248,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 28px;
+    max-width: 960px; margin: 0 auto;
+  }
+  .logo{
+    font-family: var(--serif); font-weight: 600; font-size: 18px;
+    color: var(--text); letter-spacing: 0.01em;
+  }
+  .logo span{ color: var(--indigo); }
+  .navlinks{ display:flex; gap: 30px; font-family: var(--mono); font-size: 12px; }
+  .navlinks a{ color: var(--text-muted); transition: color .15s ease; }
+  .navlinks a:hover{ color: var(--indigo); }
+  .navlinks a::before{ content: '#'; color: var(--text-dim); margin-right: 4px; }
+  @media (max-width: 640px){ .navlinks{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{ padding: 76px 0 60px; }
+  .eyebrow{
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+    color: var(--forest); text-transform: uppercase;
+    display:flex; align-items:center; gap: 9px; margin-bottom: 26px;
+  }
+  .eyebrow::before{
+    content:''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--forest);
+  }
+
+  .role-title{
+    font-family: var(--serif); font-size: clamp(32px, 5vw, 46px);
+    font-weight: 600; letter-spacing: -0.01em; line-height: 1.15;
+    color: var(--text); max-width: 720px;
+  }
+  .role-title em{ font-style: normal; color: var(--indigo); }
+
+  .code-block{
+    font-family: var(--mono);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--indigo);
+    border-radius: 6px;
+    padding: 22px 26px;
+    font-size: clamp(13px, 1.7vw, 15px);
+    line-height: 1.75;
+    overflow-x: auto;
+    margin-top: 26px;
+    color: var(--text-muted);
+  }
+  .kw{ color: var(--indigo); font-weight: 600; }
+  .type{ color: var(--bronze); }
+  .str{ color: var(--forest); }
+  .fn{ color: #1d5b8a; }
+  .punc{ color: var(--text-dim); }
+
+  .hero-sub{
+    max-width: 640px; margin: 26px 0 0;
+    color: var(--text-muted); font-size: 16px;
+  }
+  .hero-sub strong{ color: var(--text); font-weight: 600; }
+
+  .cta-row{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .btn{
+    font-family: var(--mono); font-size: 12.5px; padding: 12px 18px;
+    border-radius: 5px; border: 1px solid var(--line-strong);
+    display:flex; align-items:center; gap: 8px;
+    transition: border-color .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-primary{ background: var(--indigo); border-color: var(--indigo); color: #fff; }
+  .btn-primary:hover{ background: var(--indigo-deep); border-color: var(--indigo-deep); }
+  .btn-ghost{ color: var(--text-muted); background: var(--surface); }
+  .btn-ghost:hover{ border-color: var(--text-dim); color: var(--text); }
+
+  /* ---------- stats ---------- */
+  .stats{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 8px;
+    overflow: hidden; margin-top: 52px;
+  }
+  .stat{ background: var(--surface); padding: 22px 20px; }
+  .stat .num{ font-family: var(--serif); font-size: 27px; font-weight: 600; color: var(--indigo-deep); }
+  .stat .label{ font-size: 11.5px; color: var(--text-muted); margin-top: 4px; font-family: var(--mono); }
+  @media (max-width: 700px){ .stats{ grid-template-columns: repeat(2,1fr); } }
+
+  /* ---------- section shell ---------- */
+  section{ padding: 76px 0; border-top: 1px solid var(--line); }
+  .sec-head{ margin-bottom: 38px; }
+  .sec-tag{ font-family: var(--mono); font-size: 12px; color: var(--indigo); letter-spacing: 0.08em; margin-bottom: 10px; text-transform: uppercase; }
+  .sec-title{ font-family: var(--serif); font-size: 27px; font-weight: 600; letter-spacing: -0.01em; }
+  .sec-desc{ color: var(--text-muted); margin-top: 10px; max-width: 560px; font-size: 14.5px; }
+
+  /* ---------- signature builds ---------- */
+  .signature{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 36px;
+  }
+  .sig-card{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    padding: 22px; border-top: 3px solid var(--indigo);
+  }
+  .sig-card .tag{ font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); letter-spacing: 0.06em; }
+  .sig-card h4{ font-family: var(--serif); font-size: 16px; font-weight: 600; margin: 9px 0 9px; color: var(--text); }
+  .sig-card p{ font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  @media (max-width: 900px){ .signature{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px){ .signature{ grid-template-columns: 1fr; } }
+
+  /* ---------- terminal / experience log ---------- */
+  .terminal{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    overflow: hidden;
+  }
+  .term-bar{
+    display:flex; align-items:center; gap: 8px;
+    padding: 12px 18px; border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+    font-family: var(--mono); font-size: 11.5px; color: var(--text-dim);
+  }
+  .dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); }
+  .term-cmd{ margin-left: 8px; }
+
+  .log-entry{ padding: 24px 26px; border-bottom: 1px solid var(--line); }
+  .log-entry:last-child{ border-bottom: none; }
+  .log-head{ display:flex; align-items: baseline; gap: 12px; flex-wrap: wrap; font-family: var(--mono); }
+  .log-hash{ color: var(--bronze); font-size: 12px; }
+  .log-msg{ color: var(--text); font-weight: 700; font-size: 14.5px; font-family: var(--sans); }
+  .log-meta{ margin-left: auto; color: var(--text-dim); font-size: 11.5px; }
+  .log-company{ color: var(--text-muted); font-size: 12.5px; margin-top: 3px; font-family: var(--serif); font-style: italic; }
+  .diff{ margin-top: 14px; display:flex; flex-direction:column; gap: 7px; }
+  .diff-line{ font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); display:flex; gap: 10px; }
+  .diff-line .plus{ color: var(--forest); flex-shrink:0; }
+
+  /* ---------- gradle stack ---------- */
+  .gradle{
+    font-family: var(--mono); font-size: 13px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px; padding: 24px 26px;
+    overflow-x: auto; line-height: 1.95; color: var(--text-muted);
+  }
+  .gradle .indent{ padding-left: 24px; display:block; }
+  .gline{ display:block; }
+  .gcomment{ color: var(--text-dim); }
+
+  /* ---------- projects ---------- */
+  .projects{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+  .proj-date{ font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .proj-card{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    padding: 24px; transition: border-color .15s ease;
+  }
+  .proj-card:hover{ border-color: var(--indigo); }
+  .proj-top{ display:flex; justify-content: space-between; align-items:flex-start; gap: 10px; }
+  .proj-name{ font-family: var(--serif); font-size: 18px; font-weight: 600; }
+  .badge{
+    font-family: var(--mono); font-size: 10px; color: var(--forest);
+    border: 1px solid #c3d9c9; background: #eef5ef;
+    padding: 4px 8px; border-radius: 4px; white-space: nowrap;
+  }
+  .badge.badge-neutral{
+    color: var(--bronze); border-color: #e2d2bd; background: #faf3e9;
+  }
+  .proj-desc{ color: var(--text-muted); font-size: 13.5px; margin-top: 12px; }
+  .proj-tags{ display:flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .proj-tags span{
+    font-family: var(--mono); font-size: 10.5px; color: var(--text-muted);
+    background: var(--surface-2); border: 1px solid var(--line);
+    padding: 3px 8px; border-radius: 4px;
+  }
+  @media (max-width: 700px){ .projects{ grid-template-columns: 1fr; } }
+
+  /* ---------- education ---------- */
+  .edu-row{ display:flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 18px 0; border-top: 1px solid var(--line); }
+  .edu-row:first-of-type{ border-top: none; }
+  .edu-title{ font-weight: 600; font-size: 14.5px; }
+  .edu-sub{ color: var(--text-muted); font-size: 13px; margin-top: 3px; }
+  .edu-date{ font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+
+  /* ---------- footer / contact ---------- */
+  footer{ padding: 74px 0 56px; text-align:center; background: var(--surface-2); border-top: 1px solid var(--line); }
+  .footer-cmd{ font-family: var(--mono); color: var(--text-dim); font-size: 12px; margin-bottom: 14px; }
+  footer h2{ font-family: var(--serif); font-size: 30px; font-weight: 600; }
+  footer h2 em{ font-style: normal; color: var(--indigo); }
+  .contact-row{ display:flex; justify-content:center; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+  .foot-note{ margin-top: 46px; font-size: 11.5px; color: var(--text-dim); font-family: var(--mono); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Heena<span>.</span>Nautiyal</div>
+    <nav class="navlinks">
+      <a href="#experience">experience</a>
+      <a href="#stack">stack</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div class="eyebrow">Senior Android Engineer (SDE-3) — Open to roles in Delhi NCR</div>
+
+    <h1 class="role-title">Senior Android Engineer building <em>stable, well-architected</em> products at scale.</h1>
+
+    <div class="code-block">
+<span class="kw">class</span> <span class="type">HeenaNautiyal</span> <span class="punc">:</span> <span class="type">SeniorAndroidDeveloper</span><span class="punc">() {</span><br>
+&nbsp;&nbsp;<span class="kw">override val</span> experience <span class="punc">=</span> <span class="fn">6</span><span class="punc">.</span>years<br>
+&nbsp;&nbsp;<span class="kw">override val</span> stack <span class="punc">=</span> <span class="fn">listOf</span><span class="punc">(</span><span class="str">"Kotlin"</span><span class="punc">,</span> <span class="str">"Jetpack Compose"</span><span class="punc">,</span> <span class="str">"WebRTC"</span><span class="punc">,</span> <span class="str">"KMP"</span><span class="punc">)</span><br>
+&nbsp;&nbsp;<span class="kw">override fun</span> <span class="fn">ship</span><span class="punc">()</span> <span class="punc">=</span> <span class="str">"production apps on Google Play"</span><br>
+<span class="punc">}</span>
+    </div>
+
+    <p class="hero-sub">
+      I design, architect, and ship high-performance Android applications with <strong>Kotlin</strong>, <strong>Jetpack Compose</strong>,
+      and Clean Architecture — with production depth in real-time communication (WebRTC + FCM), Kotlin Multiplatform,
+      Google Gemini AI integration, and CI/CD-driven release automation with GitHub Actions and Fastlane. Background spans
+      <strong>FinTech</strong> and <strong>HealthTech</strong>, with four apps live on the Google Play Store.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:heenanautiyalcse@gmail.com">Email — heenanautiyalcse@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+918076985671">Call — 8076985671</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/heena-nautiyal-gairola-773415106" target="_blank" rel="noopener">LinkedIn Profile</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">6+</div><div class="label">YEARS EXPERIENCE</div></div>
+      <div class="stat"><div class="num">−25%</div><div class="label">CRASH RATE</div></div>
+      <div class="stat"><div class="num">+25%</div><div class="label">ENGAGEMENT</div></div>
+      <div class="stat"><div class="num">4</div><div class="label">APPS ON PLAY STORE</div></div>
+    </div>
+  </section>
+
+  <section id="signature">
+    <div class="sec-head">
+      <div class="sec-tag">Signature builds</div>
+      <h2 class="sec-title">Where the depth actually is</h2>
+      <p class="sec-desc">Three problem spaces I keep getting pulled back into — and where I go deepest under pressure.</p>
+    </div>
+    <div class="signature">
+      <div class="sig-card">
+        <div class="tag">REAL-TIME</div>
+        <h4>WebRTC lifecycle management</h4>
+        <p>Production video-consultation pipeline — SDP negotiation, ICE handling, and disciplined EglBase / SurfaceViewRenderer teardown to keep long telemedicine sessions leak-free.</p>
+      </div>
+      <div class="sig-card">
+        <div class="tag">OFFLINE-FIRST</div>
+        <h4>Sync in low-connectivity zones</h4>
+        <p>Field-agent data sync architecture over Retrofit + Coroutines/Flow, built for 99%+ reliability on unreliable networks — the core problem in FinTech field operations.</p>
+      </div>
+      <div class="sig-card">
+        <div class="tag">MIGRATION</div>
+        <h4>XML → Compose, without regressions</h4>
+        <p>Led legacy view-system migrations to Jetpack Compose with Hilt and Clean Architecture, cutting dev effort 30% while holding crash rate down, not up.</p>
+      </div>
+      <div class="sig-card">
+        <div class="tag">APPLIED AI</div>
+        <h4>Gemini-powered content pipelines</h4>
+        <p>Integrated Google Gemini AI for multimodal (text + image) analysis, pairing a custom PdfBox-Android extraction pipeline with Compose and Coroutines for personalized recommendations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head">
+      <div class="sec-tag">Experience</div>
+      <h2 class="sec-title">Career log</h2>
+      <p class="sec-desc">Six roles, one thread: shipping stable, well-architected Android products.</p>
+    </div>
+
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="term-cmd">$ git log --oneline --stat</span>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-head">
+          <span class="log-hash">#a91f2</span>
+          <span class="log-msg">Senior Android Developer</span>
+          <span class="log-meta">Jun 2024 → May 2026</span>
+        </div>
+        <div class="log-company">ThinkCurve Technology · Delhi, India</div>
+        <div class="diff">
+          <div class="diff-line"><span class="plus">+</span> Architected Jetpack Compose UI with Material Design 3 and Clean Architecture (MVVM), lifting engagement 25% across core flows</div>
+          <div class="diff-line"><span class="plus">+</span> Migrated legacy XML modules to Compose using Hilt, Coroutines, and Flow — cut dev effort 30%, crash rate 25%</div>
+          <div class="diff-line"><span class="plus">+</span> Led code reviews and mentored 2 junior developers on MVVM/Coroutines practices</div>
+          <div class="diff-line"><span class="plus">+</span> Drove Agile ceremonies and CI-integrated SVN workflows — 100% on-time release cadence</div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-head">
+          <span class="log-hash">#7c03d</span>
+          <span class="log-msg">Professional Upskilling — KMM &amp; Jetpack Compose</span>
+          <span class="log-meta">Oct 2023 → May 2024</span>
+        </div>
+        <div class="log-company">Independent Technical Deepening · Delhi, India</div>
+        <div class="diff">
+          <div class="diff-line"><span class="plus">+</span> Built cross-platform proof-of-concepts with Kotlin Multiplatform Mobile, Ktor, and Koin</div>
+          <div class="diff-line"><span class="plus">+</span> Advanced Compose state management, custom layouts, animation, and Compose Multiplatform UI</div>
+          <div class="diff-line"><span class="plus">+</span> Applied Clean Architecture, MVI, and Hilt DI to production-grade sample projects</div>
+          <div class="diff-line"><span class="plus">+</span> Evaluated Paging 3, DataStore, and Baseline Profiles for enterprise adoption readiness</div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-head">
+          <span class="log-hash">#5e18b</span>
+          <span class="log-msg">Senior Android Application Developer</span>
+          <span class="log-meta">Jan 2022 → Oct 2023</span>
+        </div>
+        <div class="log-company">Satin CreditCare Network · Haryana, India</div>
+        <div class="diff">
+          <div class="diff-line"><span class="plus">+</span> Built Compose features with Room, Coroutines, and Flow — responsiveness up 20%, stability up 25%</div>
+          <div class="diff-line"><span class="plus">+</span> Implemented Dagger-Hilt DI and Clean Architecture, reducing inter-module coupling</div>
+          <div class="diff-line"><span class="plus">+</span> Ran REST + Retrofit sync pipelines at 99%+ reliability for field agents in low-connectivity zones</div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-head">
+          <span class="log-hash">#2f9a1</span>
+          <span class="log-msg">Android Application Developer</span>
+          <span class="log-meta">May 2021 → Jan 2022</span>
+        </div>
+        <div class="log-company">Jiyyo Innovative Pvt. Ltd · Mohali, India</div>
+        <div class="diff">
+          <div class="diff-line"><span class="plus">+</span> Shipped WebRTC + FCM real-time video consultation — 40% efficiency gain in remote care during COVID-19</div>
+          <div class="diff-line"><span class="plus">+</span> Built MVVM (LiveData + ViewModel) UI with geolocation and third-party API integration</div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-head">
+          <span class="log-hash">#914bc</span>
+          <span class="log-msg">Junior Android Developer</span>
+          <span class="log-meta">Jul 2017 → Jun 2020</span>
+        </div>
+        <div class="log-company">Caritas Eco System Pvt. Ltd · Delhi, India</div>
+        <div class="diff">
+          <div class="diff-line"><span class="plus">+</span> Built end-to-end features with REST APIs and SQLite/Room — data management efficiency up 30%</div>
+          <div class="diff-line"><span class="plus">+</span> Applied GIS mapping and real-time location tracking</div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-head">
+          <span class="log-hash">#003a7</span>
+          <span class="log-msg">Junior Android Developer</span>
+          <span class="log-meta">Jun 2016 → Jul 2017</span>
+        </div>
+        <div class="log-company">Bizhawks Pvt. Ltd · Delhi, India</div>
+        <div class="diff">
+          <div class="diff-line"><span class="plus">+</span> Built and maintained apps in Kotlin/Java with REST APIs, SQLite/Room, and Firebase</div>
+          <div class="diff-line"><span class="plus">+</span> Owned UI optimization, bug fixing, and performance improvements in an Agile team</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head">
+      <div class="sec-tag">Stack</div>
+      <h2 class="sec-title">build.gradle.kts</h2>
+      <p class="sec-desc">The toolkit, as dependencies.</p>
+    </div>
+    <div class="gradle">
+<span class="gline"><span class="kw">dependencies</span> <span class="punc">{</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>languages.kotlin<span class="punc">,</span> languages.java<span class="punc">)</span> <span class="gcomment">// Kotlin-primary</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>ui.jetpackCompose<span class="punc">,</span> ui.materialDesign3<span class="punc">,</span> ui.xmlLayouts<span class="punc">,</span> ui.navigationComponent<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>architecture.mvvm<span class="punc">,</span> architecture.mvi<span class="punc">,</span> architecture.cleanArchitecture<span class="punc">,</span> architecture.solid<span class="punc">,</span> architecture.modularization<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>async.coroutines<span class="punc">,</span> async.flow<span class="punc">,</span> async.room<span class="punc">,</span> async.retrofit<span class="punc">,</span> async.dataStore<span class="punc">,</span> async.paging3<span class="punc">,</span> async.workManager<span class="punc">,</span> async.sealedClasses<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>di.hilt<span class="punc">,</span> di.dagger2<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>multiplatform.kmp<span class="punc">,</span> multiplatform.kmm<span class="punc">,</span> multiplatform.ktor<span class="punc">,</span> multiplatform.koin<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>realtime.webrtc<span class="punc">,</span> messaging.fcm<span class="punc">,</span> networking.restApis<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>ai.geminiMultimodal<span class="punc">,</span> ai.promptEngineering<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>domain.qrSecuritySystems<span class="punc">,</span> domain.offlineFirstSync<span class="punc">,</span> domain.upi<span class="punc">,</span> domain.kyc<span class="punc">,</span> domain.gisGeolocation<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">testImplementation</span><span class="punc">(</span>test.junit4<span class="punc">,</span> test.junit5<span class="punc">,</span> test.espresso<span class="punc">,</span> test.mockK<span class="punc">,</span> test.mockito<span class="punc">,</span> test.turbine<span class="punc">,</span> test.mockWebServer<span class="punc">,</span> test.roomInMemory<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>tooling.androidStudio<span class="punc">,</span> tooling.androidProfiler<span class="punc">,</span> tooling.leakCanary<span class="punc">,</span> tooling.baselineProfiles<span class="punc">,</span> tooling.proguardR8<span class="punc">,</span> tooling.gradleKts<span class="punc">)</span></span>
+<span class="gline indent"><span class="fn">implementation</span><span class="punc">(</span>release.git<span class="punc">,</span> release.githubActions<span class="punc">,</span> release.fastlane<span class="punc">,</span> release.jira<span class="punc">,</span> release.playStoreDeployment<span class="punc">)</span> <span class="gcomment">// CI/CD</span></span>
+<span class="gline"><span class="punc">}</span></span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head">
+      <div class="sec-tag">Projects</div>
+      <h2 class="sec-title">Key builds</h2>
+      <p class="sec-desc">Four apps live on the Google Play Store, a confidential GIS system, and a current freelance build applying Gemini AI.</p>
+    </div>
+    <div class="projects">
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-name">Anchor Smart Saver</div>
+          <div class="badge">Live</div>
+        </div>
+        <div class="proj-date">ThinkCurve Technology</div>
+        <p class="proj-desc">QR-based product verification with real-time validation over REST APIs, backed by offline + online data sync.</p>
+        <div class="proj-tags">
+          <span>Kotlin</span><span>REST APIs</span><span>Offline Sync</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-name">Anchor Smart Connect</div>
+          <div class="badge">Live</div>
+        </div>
+        <div class="proj-date">ThinkCurve Technology</div>
+        <p class="proj-desc">QR-based product verification with real-time validation over REST APIs, backed by offline + online data sync — built multiplatform across iOS and Android.</p>
+        <div class="proj-tags">
+          <span>Kotlin</span><span>Jetpack Compose</span><span>KMP</span><span>REST APIs</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-name">Satin Samridhi</div>
+          <div class="badge">Live</div>
+        </div>
+        <div class="proj-date">Satin CreditCare Network</div>
+        <p class="proj-desc">FinTech field-operations app enforcing offline data sync for agents working in low-connectivity zones — reliability first, UI second.</p>
+        <div class="proj-tags">
+          <span>Kotlin</span><span>Room</span><span>Coroutines/Flow</span><span>Retrofit</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-name">Jiyyo E Mitra</div>
+          <div class="badge">Live</div>
+        </div>
+        <div class="proj-date">Jiyyo Innovative</div>
+        <p class="proj-desc">Real-time telemedicine app combining GPS, WebRTC, and FCM — geolocation services plus live streaming for interactive care delivery.</p>
+        <div class="proj-tags">
+          <span>WebRTC</span><span>FCM</span><span>Geolocation</span><span>Live Streaming</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-name">GIS Plan Management</div>
+          <div class="badge badge-neutral">Government project</div>
+        </div>
+        <div class="proj-date">Caritas Eco System</div>
+        <p class="proj-desc">Location-based planning system built under a semi-government mandate; GIS mapping details stay confidential per central government guidelines.</p>
+        <div class="proj-tags">
+          <span>GIS</span><span>Geolocation</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-name">AI-Powered Toddler Learning App</div>
+          <div class="badge badge-neutral">Freelance · May 2026</div>
+        </div>
+        <div class="proj-date">Independent</div>
+        <p class="proj-desc">Google Gemini AI for multimodal (text + image) analysis of PDF worksheets, with a custom PdfBox-Android extraction pipeline driving personalized activity recommendations.</p>
+        <div class="proj-tags">
+          <span>Gemini AI</span><span>Jetpack Compose</span><span>Coroutines</span><span>MVVM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head">
+      <div class="sec-tag">Education &amp; Certification</div>
+      <h2 class="sec-title">Foundations</h2>
+    </div>
+    <div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-title">B.Tech, Computer Science</div>
+          <div class="edu-sub">MVN University, Haryana</div>
+        </div>
+        <div class="edu-date">2014</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-title">Android App Development Certification</div>
+          <div class="edu-sub">HCL</div>
+        </div>
+        <div class="edu-date">Issued Jul 2016</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-cmd">$ echo $NEXT_STEP</div>
+    <h2>Let's build the <em>next release</em>.</h2>
+    <div class="contact-row">
+      <a class="btn btn-primary" href="mailto:heenanautiyalcse@gmail.com">Email — heenanautiyalcse@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+918076985671">Call — 8076985671</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/heena-nautiyal-gairola-773415106" target="_blank" rel="noopener">LinkedIn Profile</a>
+    </div>
+    <div class="foot-note">Delhi, India · Open to Senior Android Engineer (SDE-3) roles, Delhi NCR</div>
+  </div>
+</footer>
+
+</body>
+</html>
